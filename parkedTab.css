@@ -1,0 +1,35 @@
+
+.hidden {
+    display: none;
+}
+
+#id-wrap {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+#title {
+  margin-top: 4rem;
+}
+
+#url {
+    font-size: 1rem;
+}
+
+#debug-wrap,
+#options-wrap {
+    margin-top: 4rem;
+    font-size: 0.8rem;
+    opacity: 0.5;
+}
+
+#debug-header {
+    cursor: pointer;
+}
+
+#debug {
+    font-size: 0.8rem;
+}
