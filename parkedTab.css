@@ -1,8 +1,4 @@
 
-.hidden {
-    display: none;
-}
-
 #id-wrap {
     display: flex;
     justify-content: start;

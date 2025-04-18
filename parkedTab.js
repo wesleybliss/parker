@@ -3,35 +3,36 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const params = new URLSearchParams(window.location.search)
     
-    const id = params.get('id')
-        ? decodeURIComponent(params.get('id'))
-        : 'No ID provided'
+    const getParam = (name, fallback) => {
+        
+        const value = params.get(name)
+            ? decodeURIComponent(params.get(name))
+            : fallback
+        
+        return typeof fallback === 'object'
+            ? JSON.parse(value)
+            : value
+        
+    }
     
-    const url = params.get('url')
-        ? decodeURIComponent(params.get('url'))
-        : 'No URL provided'
+    const id = getParam('id', 'No ID provided')
+    const url = getParam('url', 'No URL provided')
+    const title = getParam('title', 'No URL provided')
+    const debugInformation = getParam('debug', {})
+    const options = getParam('options', {})
     
-    const title = params.get('title')
-        ? decodeURIComponent(params.get('title'))
-        : 'No URL provided'
+    const elements = getElementsByIds('id', 'title', 'url')
     
-    const debugInformation = params.get('debug')
-        ? JSON.parse(decodeURIComponent(params.get('debug')))
-        : {}
-    
-    const options = params.get('options')
-        ? JSON.parse(decodeURIComponent(params.get('options')))
-        : {}
-    
-    document.getElementById('id').textContent = id
-    document.getElementById('title').textContent = title
-    
-    document.getElementById('url').href = url
-    document.getElementById('url').textContent = url
+    elements.id.textContent = id
+    elements.title.textContent = title
+    elements.url.href = url
+    elements.url.textContent = url
     
     document.title = `Parked: ${title}`
     
-    console.log('DEBUG', JSON.stringify(options, null, 4))
+    console.log('DEBUG', options)
+    
+    setEffectiveTheme(options.theme)
     
     const debugHeader = document.getElementById('debug-header')
     
